@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  recommendation-service:
+    container_name: book-recommendation-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - book-recommendation-network
+
+networks:
+  book-recommendation-network:
+    driver: bridge 
