@@ -23,7 +23,7 @@ export class ScraperController {
 
   @Post()
   async getReviewsByTitles(@Body() request: any): Promise<BookReview[]> {
-    let titles = [];
+    let titles = [];  
     
     if (request && request.titles) {
       titles = Array.isArray(request.titles) ? request.titles : [request.titles];
